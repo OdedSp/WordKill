@@ -41,13 +41,13 @@
 </script>
 
 <style scoped>
-    .player {
+    /* .player {
         margin: 20px;
-    }
+    } */
     .button-content {
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
     }
     img{
