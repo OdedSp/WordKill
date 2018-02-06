@@ -1,4 +1,7 @@
-import { words } from "./words";
+import { words } from './words';
+import axios from 'axios';
+
+const baseUrl = '//localhost:3003/'
 
 var targets;
 // var words = ['cook', 'computer', 'phone', 'couch', 'shirt', 'tree', 'keys', 'garbage', 'wind', 'write']
@@ -14,12 +17,17 @@ function getPlayerObjs(names) {
         isAlive: true,
         killWord: getKillWord(),
         target: getTarget(i, shuffledNames),
-        deathtoll: 0
+        killCount: 0
       })
     });
     var shuffledPlayerObjs = shuffle(playerObjs)
     resolve(playerObjs)
   })
+}
+
+function saveGame(gameObj) {
+  axios.post(baseUrl+'game/create', gameObj)
+  .then(res => console.log(res))
 }
 
 function getTarget(i, names) {
@@ -43,5 +51,6 @@ function shuffle(arr) {
 }
 
 export default {
-  getPlayerObjs
+  getPlayerObjs,
+  saveGame
 }

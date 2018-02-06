@@ -44,14 +44,16 @@
             },
             killTarget() {
                 const {name, target} = this.player
-                setTimeout(() => {
-                    this.$store.commit('killPlayer', {name, target})
-                }, 1200);
                 if (this.isLastKill) {
+                    this.$store.commit('killPlayer', {name, target})
                     this.$router.push('/winner')
                 } else {
+                    setTimeout(() => {
+                        this.$store.commit('killPlayer', {name, target})
+                    }, 1200);
                     this.goBack()
                 }
+                // this.goBack()
             }
         }
     }

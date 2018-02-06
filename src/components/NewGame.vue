@@ -5,8 +5,10 @@
     </v-btn>
     <v-layout column align-center v-if="!names.length">
       <h1 class="white--text">How many players?</h1>
-      <input type="number" v-model="playerCount" min="3" max="10">
-      <v-btn color="success" @click="showNamesInput" flat fab class="check">✓</v-btn>
+      <input type="number" v-model="playerCount" min="3" max="868">
+      <v-btn color="success" @click="showNamesInput" flat fab class="check">
+        <v-icon>arrow_forward</v-icon>
+      </v-btn>
       <span class="errorMsg" v-if="error.count">There is a 3-preson minimum in order to play this game</span>
     </v-layout>
     <v-layout column align-center  v-else>
@@ -20,8 +22,10 @@
       <span class="errorMsg" v-if="error.sameName">Can't use the same name twice</span>
       <span class="errorMsg" v-if="error.blankName">Can't leave a blank name</span>
         <div class="buttons">
-        <v-btn color="success" @click="sendNames" flat fab>✓</v-btn>
-        <v-btn color="success" @click="addPlayer" flat fab  v-if="names.length < 10">
+        <v-btn color="success" @click="sendNames" flat fab>
+          <v-icon>done</v-icon>
+        </v-btn>
+        <v-btn color="success" @click="addPlayer" flat fab  v-if="names.length < 868">
           <v-icon>add_circle_outline</v-icon>
         </v-btn>
       </div>

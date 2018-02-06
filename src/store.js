@@ -24,6 +24,7 @@ const store = new Vuex.Store({
       })
       killer.target = target.target
       killer.killWord = target.killWord
+      killer.killCount++
       state.deathToll++
       target.isAlive = false
       target.target = null
@@ -35,8 +36,13 @@ const store = new Vuex.Store({
   actions: {
     getPlayers (context, names) {
       GameService.getPlayerObjs(names)
-      .then(res => {
-        store.commit('setPlayers', {players: res, deathToll: 0})
+      .then(playerObjs => {
+        let game = {
+          players: playerObjs,
+          deathToll: 0
+        }
+        store.commit('setPlayers', game)
+        // GameService.saveGame(game)
       })
     }
   },
@@ -47,7 +53,19 @@ const store = new Vuex.Store({
     isLastKill: state => {
       return (state.deathToll+2 === state.players.length)
     },
+    isGameOn: state => {
+      return (state.deathToll+1 < state.players.length)
+    },
     winner: state => {
+      if (state.deathToll+1 < state.players.length) {
+        let biggestKiller = state.players[0]
+        for (let i = 0; i < state.players.length; i++) {
+          if (state.players[i].killCount > biggestKiller.killCount) {
+            biggestKiller = state.players[i]
+          }
+        }
+        return biggestKiller
+      }
       return state.players.find(player => {
         return player.isAlive
       })
