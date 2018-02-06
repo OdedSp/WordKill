@@ -9,7 +9,7 @@
                 dark
                 large>
                 <div class="button-content">
-                    <img :src="'https://api.adorable.io/avatars/40/spitzer.png'" alt=""/>
+                    <!-- <img :src="'https://api.adorable.io/avatars/40/spitzer.png'" alt=""/> -->
                     <span>{{player.name}}</span>
                 </div>
             </v-btn>
